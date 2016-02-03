@@ -5,7 +5,7 @@ public class Employee {
 	private String firstName;
 	private String lastName;
 	private String middleName;
-	private char gender;
+	private String gender;
 	private double salary;
 	private String address;
 	private String city;
@@ -15,7 +15,7 @@ public class Employee {
 	public Employee(){
 		
 	}
-	public Employee(int id, String firstName, String lastName, String middleName, char gender, double salary,
+	public Employee(int id, String firstName, String lastName, String middleName, String gender, double salary,
 			String address, String city, String state, int zipcode)
 	{
 		this.id = id;
@@ -61,11 +61,11 @@ public class Employee {
 	{
 		this.middleName = middleName;
 	}
-	public char getGender()
+	public String getGender()
 	{
 		return gender;
 	}
-	public void setGender(char gender)
+	public void setGender(String gender)
 	{
 		this.gender = gender;
 	}

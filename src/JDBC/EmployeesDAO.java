@@ -70,6 +70,33 @@ public class EmployeesDAO {
 		}
 	}
 	
-	
+	private void initEmployees(){
+		employees = new ArrayList();
+		String sqltxt = "SELECT id, firstname, lastname, middlename, gender, salary, address, city, state, zipcode FROM employees;";
+		try{
+			Class.forName(JDBC_DRIVER);
+			conn = DriverManager.getConnection(URL, USER, PASSWORD);
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sqltxt);
+			ResultSetMetaData rsmd = rs.getMetaData();
+			while(rs.next()){
+				int id = rs.getInt(1);
+				String fn = rs.getString(2);
+				String ln = rs.getString(3);
+				String mn = rs.getString(4);
+				String gender = rs.getString(5);
+				double salary = rs.getDouble(6);
+				String add = rs.getString(7);
+				String city = rs.getString(8);
+				String state = rs.getString(9);
+				int zip = rs.getInt(10);
+				
+				employees.add(new Employee(id, fn, ln, mn, gender, salary, add, city, state, zip));
+			}
+		}catch(Exception e){
+			
+		}
+		
+	}
 
 }
