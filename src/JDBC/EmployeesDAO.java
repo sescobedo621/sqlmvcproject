@@ -10,7 +10,8 @@ public class EmployeesDAO {
 	private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	private Connection conn;
 	private Statement stmt;
-
+	private ArrayList<Employee> employees;
+	//simple select
 	public ArrayList<ArrayList> select(String sqltxt)
 	{
 		ArrayList<ArrayList> arrayList = new ArrayList<>();
@@ -48,6 +49,7 @@ public class EmployeesDAO {
 		}
 	}
 
+	//simple update
 	public int update(String sqltxt)
 	{
 		int uc = 0;
