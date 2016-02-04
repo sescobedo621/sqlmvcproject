@@ -111,6 +111,7 @@ public class EmployeesDAO {
 	// listing employees
 	public ArrayList<Employee> listAllEmployees()
 	{
+		//initEmployees();
 		return employees;
 	}
 	public Employee getEmployee(int id){
@@ -137,4 +138,15 @@ public class EmployeesDAO {
 				+ emp.getCity() + "', '" + emp.getState() + "', " + emp.getZipcode() + ");";
 		int num = update(sqltxt);
 	}
+
+	public void remove(Employee emp)
+	{
+		 Employee e = getEmployee(emp.getId());
+			employees.remove(e);
+			//System.out.println(e.getId());
+			String sqltxt = "DELETE FROM employees WHERE id=" + e.getId() + ";";
+			int number = update(sqltxt);
+	}
+	
+	
 }

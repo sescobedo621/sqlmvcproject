@@ -55,11 +55,27 @@ public class ComplexEmployeeController {
 		ModelAndView mv = allEmployees();
 		return mv;
 	}
-	@RequestMapping(path="updateEmployee", method=RequestMethod.GET)
+	@RequestMapping(path="updateEmployee.do", method=RequestMethod.GET)
 	public ModelAndView updateEmployeeForm(){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("delete.jsp");
 		mv.addObject("employees", dao.listAllEmployees());
+		return mv;
+	}
+	@RequestMapping(path="deleteEmployee.do", method=RequestMethod.POST)
+	public ModelAndView deleteEmployee(Employee emp){
+		//System.out.println(emp.getAddress());
+		dao.remove(emp);
+		ModelAndView mv = allEmployees();
+		return mv;
+	}
+	@RequestMapping(path="updateEmployee.do", params="id", method=RequestMethod.GET)
+	public ModelAndView editEmployee(@RequestParam("id") int id){
+		Employee emp = dao.getEmployee(id);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("updateEmployee.jsp");
+		mv.addObject("employee", emp);
 		return mv;
 	}
 }
