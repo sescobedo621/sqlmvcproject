@@ -3,6 +3,8 @@ package JDBC;
 import java.sql.*;
 import java.util.ArrayList;
 
+import javax.annotation.PostConstruct;
+
 public class EmployeesDAO {
 	private final String URL = "jdbc:mysql://localhost:3306/companydb";
 	private final String USER = "student";
@@ -11,7 +13,10 @@ public class EmployeesDAO {
 	private Connection conn;
 	private Statement stmt;
 	private ArrayList<Employee> employees;
-	//simple select
+
+	// initializing employees arraylist
+
+	// simple select
 	public ArrayList<ArrayList> select(String sqltxt)
 	{
 		ArrayList<ArrayList> arrayList = new ArrayList<>();
@@ -49,14 +54,14 @@ public class EmployeesDAO {
 		}
 	}
 
-	//simple update
+	// simple update
 	public int update(String sqltxt)
 	{
 		int uc = 0;
 		try {
 			Class.forName(JDBC_DRIVER);
 			conn = DriverManager.getConnection(URL, USER, PASSWORD);
-			//conn.setAutoCommit(false);
+			// conn.setAutoCommit(false);
 			stmt = conn.createStatement();
 
 			uc = stmt.executeUpdate(sqltxt);
@@ -69,17 +74,18 @@ public class EmployeesDAO {
 			return uc;
 		}
 	}
-	
-	private void initEmployees(){
+
+	// initializing employees
+	private void initEmployees()
+	{
 		employees = new ArrayList();
 		String sqltxt = "SELECT id, firstname, lastname, middlename, gender, salary, address, city, state, zipcode FROM employees;";
-		try{
+		try {
 			Class.forName(JDBC_DRIVER);
 			conn = DriverManager.getConnection(URL, USER, PASSWORD);
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sqltxt);
-			ResultSetMetaData rsmd = rs.getMetaData();
-			while(rs.next()){
+			while (rs.next()) {
 				int id = rs.getInt(1);
 				String fn = rs.getString(2);
 				String ln = rs.getString(3);
@@ -90,13 +96,36 @@ public class EmployeesDAO {
 				String city = rs.getString(8);
 				String state = rs.getString(9);
 				int zip = rs.getInt(10);
-				
+
 				employees.add(new Employee(id, fn, ln, mn, gender, salary, add, city, state, zip));
 			}
-		}catch(Exception e){
+			stmt.close();
+			conn.close();
 			
+		} catch (Exception e) {
+			System.err.println(e);
 		}
-		
+
 	}
 
+	// listing employees
+	public ArrayList<Employee> listAllEmployees()
+	{
+		initEmployees();
+		return employees;
+	}
+	public Employee getEmployee(int id){
+		Employee e = null;
+		int num = -1;
+		for (Employee employee : employees) {
+			if(employee.getId() == id){
+				num = employees.indexOf(employee);
+				break;
+			}
+		}
+		if(num != -1){
+			e = employees.get(num);
+		}
+		return e;
+	}
 }

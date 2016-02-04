@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import JDBC.Employee;
 import JDBC.EmployeesDAO;
 
 @Controller
@@ -56,6 +57,4 @@ public class EmployeesController {
 		
 		return mv;
 	}
-	
-	
 }
