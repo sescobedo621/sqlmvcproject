@@ -11,10 +11,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import JDBC.Employee;
 import JDBC.EmployeesDAO;
+import JDBC.StatesDAO;
 @Controller
 public class ComplexEmployeeController {
 	@Autowired
 	private EmployeesDAO dao;
+	@Autowired
+	private StatesDAO stateDAO;
 	
 	@RequestMapping(path="allEmployees.do", method=RequestMethod.GET)
 	public ModelAndView allEmployees(){
@@ -37,5 +40,26 @@ public class ComplexEmployeeController {
 		
 		return mv;
 	}
-	
+	@RequestMapping(path="addEmployee.do", method=RequestMethod.GET)
+	public ModelAndView addEmployeeForm(){
+		stateDAO.initStates();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("add.jsp");
+		mv.addObject("states", stateDAO.getAbbrev());
+		mv.addObject(new Employee());
+		return mv;
+	}
+	@RequestMapping(path="addEmployee.do", method=RequestMethod.POST)
+	public ModelAndView addEmployee(Employee emp){
+		dao.addEmployee(emp);
+		ModelAndView mv = allEmployees();
+		return mv;
+	}
+	@RequestMapping(path="updateEmployee", method=RequestMethod.GET)
+	public ModelAndView updateEmployeeForm(){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("delete.jsp");
+		mv.addObject("employees", dao.listAllEmployees());
+		return mv;
+	}
 }

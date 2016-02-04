@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,10 +11,27 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>${employee.firstName} ${employee.middleName} ${employee.lastName}</h3>
-<p>Salary: <fmt:formatNumber value="${employee.salary}" 
-				                  type="currency" /></p>
-<p>Address: ${employee.address}<br>
-           ${employee.city}, ${employee.state} ${employee.zipcode}</p>
+	<header>
+	<ul>
+		<li><h2>
+				<a href="index.html">companyRolodex</a>
+			</h2></li>
+		<li><a href="sql.do">Simple Select Query</a></li>
+		<li><a href="update.do">Simple Update</a></li>
+		<li><a href="allEmployees.do">List All Employees</a></li>
+	</ul>
+	</header>
+	<div class="body">
+		<h3>${employee.firstName} ${employee.middleName}
+			${employee.lastName}</h3>
+		<p>
+			Salary:
+			<fmt:formatNumber value="${employee.salary}" type="currency" />
+		</p>
+		<p>
+			Address: ${employee.address}<br> ${employee.city},
+			${employee.state} ${employee.zipcode}
+		</p>
+	</div>
 </body>
 </html>

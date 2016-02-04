@@ -5,10 +5,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="normalize.css">
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
 <title>Insert title here</title>
 </head>
 <body>
-	<table>
+<header>
+	<ul>
+		<li><h2><a href="index.html">companyRolodex</a></h2></li>
+		<li><a href="sql.do">Simple Select Query</a></li>
+		<li><a href="update.do">Simple Update</a></li>
+		<li><a href="allEmployees.do">List All Employees</a></li>
+		<li><a href="addEmployee.do">Add Employee</a></li>
+	</ul>
+</header>
+<div class="body">
+	<table id="query">
 		<c:forEach var="results" items="${arrayList }">
 			<tr>
 				<c:forEach var="result" items="${results }">
@@ -17,5 +29,6 @@
 			</tr>
 		</c:forEach>
 	</table>
+</div>
 </body>
 </html>

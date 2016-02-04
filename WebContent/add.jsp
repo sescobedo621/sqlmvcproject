@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="normalize.css">
 <link rel="stylesheet" type="text/css" href="stylesheet.css">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -20,26 +21,22 @@
 	</ul>
 </header>
 <div class="body">
-	<table id="employee table">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>First Name</th>
-				<th>Middle Name</th>
-				<th>Last Name</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="employee" items="${employees }">
-				<tr>
-					<td><a href="employee.do?id=${employee.id}">${employee.id}</a></td>
-					<td>${employee.firstName}</td>
-					<td>${employee.middleName}</td>
-					<td>${employee.lastName}</td>
-				</tr>
+	<form method="POST" action="addEmployee.do">
+		ID: <input type="text" name="id" size="8" /><br> First Name: <input
+			type="text" name="firstName" /> <br>Middle Name: <input
+			type="text" name="middleName" /> <br>Last Name:<input
+			type="text" name="lastName" /><br>
+			Street Address: <input type="text" name="address"/>
+			City: <input type="text" name="city"/>
+			State:<select name="state"> <c:forEach var="st" items="${states}">
+			<option value=${st }>${st}</option>
 			</c:forEach>
-		</tbody>
-	</table>
+			</select>
+			<br>zipcode:
+			<input type="text" name="zipcode"/>
+			<input type="submit" value="Add Employee"/>
+
+	</form>
 </div>
 </body>
 </html>
