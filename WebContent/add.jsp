@@ -8,18 +8,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="normalize.css">
 <link rel="stylesheet" type="text/css" href="stylesheet.css">
-<title>Insert title here</title>
+<title>Add Employee</title>
 </head>
 <body>
-<header>
-	<ul>
-		<li><h2><a href="index.html">companyRolodex</a></h2></li>
-		<li><a href="sql.do">Simple Select Query</a></li>
-		<li><a href="update.do">Simple Update</a></li>
-		<li><a href="allEmployees.do">List All Employees</a></li>
-		<li><a href="addEmployee.do">Add Employee</a></li>
-	</ul>
-</header>
+<jsp:include page="navbar.jsp"></jsp:include>
 <div class="body">
 	<form method="POST" action="addEmployee.do">
 		ID: <input type="text" name="id" size="8" /><br> First Name: <input

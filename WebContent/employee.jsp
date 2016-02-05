@@ -8,19 +8,10 @@
 <link rel="stylesheet" type="text/css" href="normalize.css">
 <link rel="stylesheet" type="text/css" href="stylesheet.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Employee</title>
 </head>
 <body>
-	<header>
-	<ul>
-		<li><h2>
-				<a href="index.html">companyRolodex</a>
-			</h2></li>
-		<li><a href="sql.do">Simple Select Query</a></li>
-		<li><a href="update.do">Simple Update</a></li>
-		<li><a href="allEmployees.do">List All Employees</a></li>
-	</ul>
-	</header>
+	<jsp:include page="navbar.jsp"></jsp:include>
 	<div class="body">
 		<h3>${employee.firstName} ${employee.middleName}
 			${employee.lastName}</h3>
@@ -29,8 +20,8 @@
 			<fmt:formatNumber value="${employee.salary}" type="currency" />
 		</p>
 		<p>
-			Address: ${employee.address}<br> ${employee.city},
-			${employee.state} ${employee.zipcode}
+			Address: <address>${employee.address}<br> ${employee.city},
+			${employee.state} ${employee.zipcode}</address>
 		</p>
 	</div>
 </body>

@@ -21,7 +21,7 @@ public class EmployeesController {
 	public ModelAndView select()
 	{
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("select.html");
+		mv.setViewName("select.jsp");
 		return mv;
 	}
 
@@ -42,18 +42,18 @@ public class EmployeesController {
 	@RequestMapping(path="update.do", method = RequestMethod.GET)
 	public ModelAndView update(){
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("update.html");
+		mv.setViewName("simpleupdate.jsp");
 		return mv;
 	}
 	
 	@RequestMapping(path="update.do", params="sqltext", method=RequestMethod.POST)
 	public ModelAndView update(@RequestParam("sqltext") String sqltext){
-		System.out.println(sqltext);
+		//System.out.println(sqltext);
 		int uc = dao.update(sqltext);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("update.jsp");
-		//mv.addObject("number", uc );
+		mv.addObject("number", uc );
 		
 		return mv;
 	}

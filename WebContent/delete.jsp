@@ -7,22 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="normalize.css">
 <link rel="stylesheet" type="text/css" href="stylesheet.css">
-<title>Insert title here</title>
+<title>Edit Employees</title>
 </head>
-<body>
-	<header>
-	<ul>
-		<li><h2><a href="index.html">companyRolodex</a></h2></li>
-		<li><a href="sql.do">Simple Select Query</a></li>
-		<li><a href="update.do">Simple Update</a></li>
-		<li><a href="allEmployees.do">List All Employees</a></li>
-		<li><a href="addEmployee.do">Add Employee</a></li>
-		<li><a href="updateEmployee.do">Update Employees</a></li>
-	</ul>
-</header>
+<jsp:include page="navbar.jsp"></jsp:include>
 
 <div class="body">
-	<table id="employee table">
+	<table>
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -35,11 +25,11 @@
 		<tbody>
 			<c:forEach var="employee" items="${employees}">
 				<tr>
-					<td><a href="updateEmployee.do?id=${employee.id}">${employee.id}</a></td>
+					<td id="employeelink"><a href="updateEmployee.do?id=${employee.id}">${employee.id}</a></td>
 					<td>${employee.firstName}</td>
 					<td>${employee.middleName}</td>
 					<td>${employee.lastName}</td>
-					<td><form action="deleteEmployee.do" method="POST"><input type="hidden" name="id" value ="${employee.id}"><input type="submit" value="DELETE"></form></td>
+					<td><form action="deleteEmployee.do" method="POST" id="delete"><input type="hidden" name="id" value ="${employee.id}"><input type="submit" value="DELETE"></form></td>
 				</tr>
 			</c:forEach>
 		</tbody>

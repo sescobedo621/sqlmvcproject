@@ -7,18 +7,10 @@
 <link rel="stylesheet" type="text/css" href="normalize.css">
 <link rel="stylesheet" type="text/css" href="stylesheet.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>All Employees</title>
 </head>
 <body>
-<header>
-	<ul>
-		<li><h2><a href="index.html">companyRolodex</a></h2></li>
-		<li><a href="sql.do">Simple Select Query</a></li>
-		<li><a href="update.do">Simple Update</a></li>
-		<li><a href="allEmployees.do">List All Employees</a></li>
-		<li><a href="addEmployee.do">Add Employee</a></li>
-	</ul>
-</header>
+<jsp:include page="navbar.jsp"></jsp:include>
 <div class="body">
 	<table id="employee table">
 		<thead>
@@ -32,7 +24,7 @@
 		<tbody>
 			<c:forEach var="employee" items="${employees }">
 				<tr>
-					<td><a href="employee.do?id=${employee.id}">${employee.id}</a></td>
+					<td id="employeelink"><a href="employee.do?id=${employee.id}">${employee.id}</a></td>
 					<td>${employee.firstName}</td>
 					<td>${employee.middleName}</td>
 					<td>${employee.lastName}</td>
