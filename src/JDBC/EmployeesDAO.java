@@ -74,6 +74,7 @@ public class EmployeesDAO {
 			return uc;
 		}
 	}
+
 	@PostConstruct
 	// initializing employees
 	private void initEmployees()
@@ -101,7 +102,7 @@ public class EmployeesDAO {
 			}
 			stmt.close();
 			conn.close();
-			
+
 		} catch (Exception e) {
 			System.err.println(e);
 		}
@@ -111,42 +112,69 @@ public class EmployeesDAO {
 	// listing employees
 	public ArrayList<Employee> listAllEmployees()
 	{
-		//initEmployees();
+		// initEmployees();
 		return employees;
 	}
-	public Employee getEmployee(int id){
+
+	public Employee getEmployee(int id)
+	{
 		Employee e = null;
 		int num = -1;
 		for (Employee employee : employees) {
-			if(employee.getId() == id){
+			if (employee.getId() == id) {
 				num = employees.indexOf(employee);
 				break;
 			}
 		}
-		if(num != -1){
+		if (num != -1) {
 			e = employees.get(num);
 		}
 		return e;
 	}
-	
-	//adding an employee
-	public void addEmployee(Employee emp){
+
+	// adding an employee
+	public void addEmployee(Employee emp)
+	{
 		employees.add(emp);
 		emp.setSalary(15000.00);
-		String sqltxt = "INSERT INTO employees(id, firstname, lastname, middlename, salary, address, city, state, zipcode) VALUES ("+ emp.getId() + ", '"
-				+emp.getFirstName() +"', '" + emp.getLastName() + "', '" + emp.getMiddleName() + "', 15000.00, '" + emp.getAddress() + "', '"
-				+ emp.getCity() + "', '" + emp.getState() + "', " + emp.getZipcode() + ");";
+		String sqltxt = "INSERT INTO employees(id, firstname, lastname, middlename, salary, address, city, state, zipcode) VALUES ("
+				+ emp.getId() + ", '" + emp.getFirstName() + "', '" + emp.getLastName() + "', '" + emp.getMiddleName()
+				+ "', 15000.00, '" + emp.getAddress() + "', '" + emp.getCity() + "', '" + emp.getState() + "', "
+				+ emp.getZipcode() + ");";
 		int num = update(sqltxt);
 	}
 
 	public void remove(Employee emp)
 	{
-		 Employee e = getEmployee(emp.getId());
-			employees.remove(e);
-			//System.out.println(e.getId());
-			String sqltxt = "DELETE FROM employees WHERE id=" + e.getId() + ";";
-			int number = update(sqltxt);
+		Employee e = getEmployee(emp.getId());
+		employees.remove(e);
+		// System.out.println(e.getId());
+		String sqltxt = "DELETE FROM employees WHERE id=" + e.getId() + ";";
+		int number = update(sqltxt);
 	}
-	
-	
+
+	public void updateEmployee(Employee emp)
+	{
+		String state = "";
+		int number = -1;
+		for (Employee employee : employees) {
+			if (employee.getId() == emp.getId()) {
+				state = employee.getState();
+				number = employees.indexOf(employee);
+				break;
+			}
+		}
+		if (number != -1) {
+			emp.setState(state);
+			employees.set(number, emp);
+			String sqltxt = "UPDATE employees SET firstname= '" + emp.getFirstName() + "', middlename= '"
+					+ emp.getMiddleName() + "', lastname= '" + emp.getLastName() + "', salary= " + emp.getSalary()
+					+ ", address= '" + emp.getAddress() + "', city= '" + emp.getCity() + "', zipcode= "
+					+ emp.getZipcode() + " WHERE id =" + emp.getId();
+			System.out.println(sqltxt);
+			int num = update(sqltxt);
+		}
+
+	}
+
 }

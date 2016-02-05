@@ -76,6 +76,15 @@ public class ComplexEmployeeController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("updateEmployee.jsp");
 		mv.addObject("employee", emp);
+		mv.addObject("states", stateDAO.getAbbrev());
+		return mv;
+	}
+	@RequestMapping(path="updateEmployee.do", method=RequestMethod.POST)
+	public ModelAndView updateEmployee(Employee emp){
+		dao.updateEmployee(emp);
+		
+		ModelAndView mv = displayEmployee(emp.getId());
+		
 		return mv;
 	}
 }
